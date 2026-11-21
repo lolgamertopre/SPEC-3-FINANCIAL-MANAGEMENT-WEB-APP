@@ -1,0 +1,86 @@
+{
+    "client": {
+        "client_id": "client_1",
+        "name": "Sherwin Banquil",
+        "username": "sherwin",
+        "password": "password123",
+        "email": "kasherwinbanquil@gmail.com",
+        "monthlyTargetSavings": 5000,
+        "currency": "₱"
+    },
+    "categories": [
+        {
+            "category_id": "food",
+            "category_name": "Food",
+            "emoji": "🛒",
+            "color": "#F97316",
+            "defaultBudget": 5000
+        },
+        {
+            "category_id": "transport",
+            "category_name": "Transportation",
+            "emoji": "🚌",
+            "color": "#06B6D4",
+            "defaultBudget": 2000
+        },
+        {
+            "category_id": "bills",
+            "category_name": "Bills",
+            "emoji": "⚡",
+            "color": "#EF4444",
+            "defaultBudget": 3000
+        },
+        {
+            "category_id": "medicine",
+            "category_name": "Medicine",
+            "emoji": "💊",
+            "color": "#10B981",
+            "defaultBudget": 1500
+        },
+        {
+            "category_id": "shopping",
+            "category_name": "Shopping",
+            "emoji": "🛍️",
+            "color": "#8B5CF6",
+            "defaultBudget": 1500
+        },
+        {
+            "category_id": "personal",
+            "category_name": "Personal Needs",
+            "emoji": "🧴",
+            "color": "#EC4899",
+            "defaultBudget": 2000
+        },
+        {
+            "category_id": "others",
+            "category_name": "Others",
+            "emoji": "🏷️",
+            "color": "#64748B",
+            "defaultBudget": 1000
+        }
+    ],
+    "expenses": [
+        {
+            "expense_id": 101,
+            "client_id": "client_1",
+            "category_id": "bills",
+            "name": "Electric bill",
+            "amount": 2450,
+            "date": "2026-10-04T06:30:00.000Z",
+            "description": "Meralco electricity bill payment",
+            "isDeleted": 0,
+            "syncStatus": "synced",
+            "updatedAt": "2026-10-24T09:49:29.654Z"
+        },
+        {
+            "expense_id": 102,
+            "client_id": "client_1",
+            "category_id": "food",
+            "name": "Weekly groceries",
+            "amount": 860,
+            "date": "2026-10-03T03:15:00.000Z",
+            "description": "Supermarket vegetables and rice",
+            "isDeleted": 0,
+            "syncStatus": "synced",
+            "updatedAt": "2026-10-24T09:49:29.654Z"
+        }
