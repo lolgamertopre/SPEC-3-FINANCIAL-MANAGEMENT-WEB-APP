@@ -83,4 +83,63 @@
             "isDeleted": 0,
             "syncStatus": "synced",
             "updatedAt": "2026-10-24T09:49:29.654Z"
+        } 
+        {
+            "expense_id": 103,
+            "client_id": "client_1",
+            "category_id": "transport",
+            "name": "Fuel",
+            "amount": 320,
+            "date": "2026-10-02T00:45:00.000Z",
+            "description": "Gasoline for family vehicle",
+            "isDeleted": 0,
+            "syncStatus": "synced",
+            "updatedAt": "2026-10-24T09:49:29.654Z"
+        },
+        {
+            "expense_id": 104,
+            "client_id": "client_1",
+            "category_id": "shopping",
+            "name": "Household items",
+            "amount": 550,
+            "date": "2026-10-01T08:20:00.000Z",
+            "description": "Cleaning supplies and toiletries",
+            "isDeleted": 0,
+            "syncStatus": "synced",
+            "updatedAt": "2026-10-24T09:49:29.654Z"
         }
+    ],
+    "incomes": [
+        {
+            "income_id": 201,
+            "client_id": "client_1",
+            "source": "Salary",
+            "amount": 15000,
+            "date": "2026-10-01T01:00:00.000Z",
+            "description": "Primary monthly salary payout",
+            "isDeleted": 1,
+            "syncStatus": "synced",
+            "deletedAt": "2026-10-06T05:03:46.940Z",
+            "updatedAt": "2026-10-24T09:49:29.654Z"
+        },
+        {
+            "income_id": 202,
+            "client_id": "client_1",
+            "source": "Business income",
+            "amount": 5000,
+            "date": "2026-10-03T07:00:00.000Z",
+            "description": "Online store earnings",
+            "isDeleted": 1,
+            "syncStatus": "synced",
+            "deletedAt": "2026-10-06T05:03:45.888Z",
+            "updatedAt": "2026-10-24T09:49:29.654Z"
+        }
+    ],
+    "budgets": [
+        {
+            "budget_id": "budget_food_2026-10",
+            "client_id": "client_1",
+            "category_id": "food",
+            "budget_amount": 5000,
+            "month": "2026-10"
+        },
