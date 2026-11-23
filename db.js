@@ -21,3 +21,24 @@ db.version(2).stores({
     auditLogs: 'logId, timestamp, action, syncStatus',
     meta: 'key',
 });
+let dbOpenPromise = null;
+export async function ensureDbOpen() {
+    if (db.isOpen()) return;
+    if (!dbOpenPromise) {
+        dbOpenPromise = (async () => {
+            try {
+                await db.open();
+            } catch (err) {
+                console.warn('Dexie open error, auto-recovering database:', err);
+                try {
+                    db.close();
+                    await Dexie.delete('FinancialManagementDB');
+                    await db.open();
+                } catch (recovErr) {
+                    console.error('Dexie critical recovery error:', recovErr);
+                }
+            }
+        })();
+    }
+    return dbOpenPromise;
+}
