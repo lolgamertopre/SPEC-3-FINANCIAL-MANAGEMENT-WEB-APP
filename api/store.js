@@ -548,17 +548,7 @@ class ServerStore {
             } else {
                 data.savings.push(prepared);
             }
-        });
-
-        // Merge Logs
-        data.auditLogs = data.auditLogs || [];
-        incomingLogs.forEach((log) => {
-            const exists = data.auditLogs.some((l) => l.logId === log.logId);
-            if (!exists) {
-                data.auditLogs.unshift({ ...log, syncStatus: 'synced' });
-            }
-        });
-
+        );
         this.write(data);
 
         return {
