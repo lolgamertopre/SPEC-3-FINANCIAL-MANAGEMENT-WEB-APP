@@ -308,6 +308,3 @@ export async function handleApiRequest(req, res) {
     }
 }
 
-export default async function handler(req, res) {
-    return handleApiRequest(req, res);
-}
