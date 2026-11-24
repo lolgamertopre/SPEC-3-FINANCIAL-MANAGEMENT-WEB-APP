@@ -298,13 +298,5 @@ export async function handleApiRequest(req, res) {
             return sendJson(res, 200, { success: true, message: 'Database reset to demo defaults', fresh });
         }
 
-        // Unknown /api route
-        sendJson(res, 404, { error: 'API route not found', requestedPath: pathname });
-        return true;
-    } catch (err) {
-        console.error('API Router Error:', err);
-        sendJson(res, 500, { error: 'Internal Server Error', message: err.message });
-        return true;
-    }
-}
+
 
