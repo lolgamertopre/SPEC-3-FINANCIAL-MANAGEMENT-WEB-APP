@@ -85,3 +85,71 @@ export default function PocketwiseApp() {
             );
         }
     };
+    // Data lists
+    const [expensesList, setExpensesList] = useState([]);
+    const [incomesList, setIncomesList] = useState([]);
+    const [savingsList, setSavingsList] = useState([]);
+    const [budgetsList, setBudgetsList] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    // Filters
+    const [selectedMonth, setSelectedMonth] = useState(() => new Date().toISOString().slice(0, 7));
+    const [expenseCategoryFilter, setExpenseCategoryFilter] = useState("all");
+    const [incomeSourceFilter, setIncomeSourceFilter] = useState("all");
+
+    // Modal States
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [addModalType, setAddModalType] = useState("expense"); // 'expense' | 'income'
+    const [editingItem, setEditingItem] = useState(null);
+    const [deletingItem, setDeletingItem] = useState(null);
+    const [showBudgetModal, setShowBudgetModal] = useState(false);
+    const [editingBudgetCat, setEditingBudgetCat] = useState(null);
+    const [showNotifications, setShowNotifications] = useState(false);
+
+    // Form inputs for Add/Edit
+    const [formAmount, setFormAmount] = useState("");
+    const [formName, setFormName] = useState("");
+    const [formCategory, setFormCategory] = useState("food");
+    const [formSource, setFormSource] = useState("Salary");
+    const [formDescription, setFormDescription] = useState("");
+    const [formDate, setFormDate] = useState(() => new Date().toISOString().slice(0, 10));
+    const [formStatus, setFormStatus] = useState("Completed");
+    const [formError, setFormError] = useState("");
+
+    // Auth Form State
+    const [loginUsername, setLoginUsername] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [loginError, setLoginError] = useState("");
+
+    // Reset Password Form State
+    const [resetUser, setResetUser] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [resetMessage, setResetMessage] = useState("");
+
+    // Budget Edit Form
+    const [formBudgetAmount, setFormBudgetAmount] = useState("");
+
+    // -------------------------------------------------------------
+    // Data Loading & Refresh
+    // -------------------------------------------------------------
+    const refreshAllData = async () => {
+        try {
+            await initDatabaseDefaults();
+            const [c, exp, inc, sav, bud] = await Promise.all([
+                getClient(),
+                getExpenses(),
+                getIncomes(),
+                getSavings(),
+                getBudgets(selectedMonth),
+            ]);
+            setClient(c);
+            setExpensesList(exp || []);
+            setIncomesList(inc || []);
+            setSavingsList(sav || []);
+            setBudgetsList(bud || []);
+        } catch (err) {
+            console.error("Dexie loading error:", err);
+        }
+    };
