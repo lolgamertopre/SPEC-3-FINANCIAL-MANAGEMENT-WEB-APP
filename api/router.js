@@ -205,7 +205,31 @@ export async function handleApiRequest(req, res) {
             }
         }
 
-
+        // 9. INCOMES REST CRUD: /api/incomes
+        if (pathname === '/api/incomes') {
+            if (method === 'GET') {
+                return sendJson(res, 200, { incomes: serverStore.getIncomes() });
+            }
+            if (method === 'POST') {
+                const body = await parseBody(req);
+                const created = serverStore.addIncome(body);
+                return sendJson(res, 201, created);
+            }
+        }
+        if (pathname.startsWith('/api/incomes/')) {
+            const id = pathname.replace('/api/incomes/', '');
+            if (method === 'PUT') {
+                const body = await parseBody(req);
+                const updated = serverStore.updateIncome(id, body);
+                if (!updated) return sendJson(res, 404, { error: 'Income not found' });
+                return sendJson(res, 200, updated);
+            }
+            if (method === 'DELETE') {
+                const deleted = serverStore.deleteIncome(id);
+                if (!deleted) return sendJson(res, 404, { error: 'Income not found' });
+                return sendJson(res, 200, { success: true, deletedId: id });
+            }
+        }
 
         // 10. SAVINGS REST CRUD: /api/savings
         if (pathname === '/api/savings') {
