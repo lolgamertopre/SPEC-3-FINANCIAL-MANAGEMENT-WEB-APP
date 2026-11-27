@@ -90,7 +90,7 @@ export async function handleApiRequest(req, res) {
             });
         }
 
-        // 2. BATCH 2-WAY SYNC: POST /api/sync
+        // 2. BATCHY SYNC: POST /api/sync (Finalize GET and PUT owner API routes)
         if (pathname === '/api/sync' && method === 'POST') {
             const body = await parseBody(req);
             const syncResult = serverStore.syncBatch(body);
