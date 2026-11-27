@@ -42,3 +42,94 @@ export async function ensureDbOpen() {
     }
     return dbOpenPromise;
 }
+// Default SRS categories
+export const SRS_CATEGORIES = [
+    {
+        category_id: 'food',
+        category_name: 'Food',
+        emoji: '🛒',
+        color: '#F97316',
+        bg: '#FFF7ED',
+        arrowBg: '#FFEDD5',
+        arrowColor: '#EA580C',
+        defaultBudget: 5000,
+    },
+    {
+        category_id: 'transport',
+        category_name: 'Transportation',
+        shortName: 'Transport',
+        emoji: '🚌',
+        color: '#06B6D4',
+        bg: '#ECFEFF',
+        arrowBg: '#CFFAFE',
+        arrowColor: '#0891B2',
+        defaultBudget: 2000,
+    },
+    {
+        category_id: 'bills',
+        category_name: 'Bills',
+        emoji: '⚡',
+        color: '#EF4444',
+        bg: '#FEF2F2',
+        arrowBg: '#FEE2E2',
+        arrowColor: '#DC2626',
+        defaultBudget: 3000,
+    },
+    {
+        category_id: 'medicine',
+        category_name: 'Medicine',
+        emoji: '💊',
+        color: '#10B981',
+        bg: '#ECFDF5',
+        arrowBg: '#D1FAE5',
+        arrowColor: '#059669',
+        defaultBudget: 1500,
+    },
+    {
+        category_id: 'shopping',
+        category_name: 'Shopping',
+        emoji: '🛍️',
+        color: '#8B5CF6',
+        bg: '#F5F3FF',
+        arrowBg: '#EDE9FE',
+        arrowColor: '#7C3AED',
+        defaultBudget: 1500,
+    },
+    {
+        category_id: 'personal',
+        category_name: 'Personal Needs',
+        shortName: 'Personal',
+        emoji: '🧴',
+        color: '#EC4899',
+        bg: '#FDF2F8',
+        arrowBg: '#FCE7F3',
+        arrowColor: '#DB2777',
+        defaultBudget: 2000,
+    },
+    {
+        category_id: 'others',
+        category_name: 'Others',
+        emoji: '🏷️',
+        color: '#64748B',
+        bg: '#F8FAFC',
+        arrowBg: '#F1F5F9',
+        arrowColor: '#475569',
+        defaultBudget: 1000,
+    },
+];
+
+export const INCOME_SOURCES = [
+    { id: 'salary', name: 'Salary', emoji: '💼' },
+    { id: 'business', name: 'Business income', emoji: '📈' },
+    { id: 'allowance', name: 'Allowance', emoji: '💵' },
+    { id: 'other_income', name: 'Other income', emoji: '✨' },
+];
+
+// Initialize default seed data matching SRS requirements and Screenshot demo
+export async function initDatabaseDefaults() {
+    await ensureDbOpen();
+    // HYBRID: run client check + category check in parallel
+    const [clientCount, existingCategories] = await Promise.all([
+        db.clients.count(),
+        db.categories.toArray(),
+    ]);
