@@ -133,3 +133,23 @@ export async function initDatabaseDefaults() {
         db.clients.count(),
         db.categories.toArray(),
     ]);
+
+    // 1. Seed or update client profile
+    const existingClient = await db.clients.get('client_1');
+    if (!existingClient) {
+        await db.clients.put({
+            client_id: 'client_1',
+            name: 'Sherwin Banquil',
+            username: 'sherwin',
+            password: 'password123',
+            email: 'kasherwinbanquil@gmail.com',
+        });
+    } else if (existingClient.name && existingClient.name.includes('Maria')) {
+        // Upgrade legacy client to owner Sherwin Banquil
+        await db.clients.put({
+            ...existingClient,
+            name: 'Sherwin Banquil',
+            username: 'sherwin',
+            email: 'kasherwinbanquil@gmail.com',
+        });
+    }

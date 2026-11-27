@@ -368,7 +368,7 @@ class ServerStore {
         this.write(data);
         return newSavings;
     }
-
+    // ---- this hash update savings ---
     updateSavings(id, updates) {
         const data = this.read();
         data.savings = data.savings || [];
