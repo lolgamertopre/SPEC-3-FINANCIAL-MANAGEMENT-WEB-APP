@@ -570,3 +570,21 @@ class ServerStore {
         this.write(defaults);
         return defaults;
     }
+};
+    }
+
+// Reset database
+reset() {
+    const defaults = getDefaultData();
+    this.write(defaults);
+    return defaults;
+}
+}
+
+export const serverStore = new ServerStore();
+
+export default function handler(req, res) {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ status: 'ok', store: 'active' }));
+}

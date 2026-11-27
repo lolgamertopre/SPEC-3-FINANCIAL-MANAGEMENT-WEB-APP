@@ -270,12 +270,6 @@ export async function handleApiRequest(req, res) {
             }
         }
 
-        // 12. CLIENT PROFILE & AUTH: /api/auth
-        if (pathname === '/api/auth/login' && method === 'POST') {
-            const body = await parseBody(req);
-            const authResult = serverStore.verifyAuth(body.username, body.password);
-            return sendJson(res, authResult.authenticated ? 200 : 401, authResult);
-        }
         if (pathname === '/api/auth/profile') {
             if (method === 'GET') {
                 return sendJson(res, 200, { client: serverStore.getClient() });
