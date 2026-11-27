@@ -6,7 +6,7 @@
 const API_BASE = '/api';
 
 /**
- * Check if the backend API server is online and measure latency
+ * check is backend or api is ok
  */
 export async function checkApiHealth() {
     const start = performance.now();
