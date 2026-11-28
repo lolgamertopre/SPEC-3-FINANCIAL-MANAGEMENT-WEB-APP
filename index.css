@@ -17,3 +17,14 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+/* Custom smooth transitions & animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
