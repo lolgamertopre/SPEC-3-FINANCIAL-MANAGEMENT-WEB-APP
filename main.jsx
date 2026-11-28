@@ -169,3 +169,21 @@ useEffect(() => {
     setLoading(false);
   })();
 }, [selectedMonth]);
+
+// -------------------------------------------------------------
+    // Financial Metrics Calculations (SRS 2.2.8, 2.2.9, 2.2.11)
+    // -------------------------------------------------------------
+    const metrics = useMemo(() => {
+        // Filter by selected month
+        const currentExpenses = expensesList.filter((e) => !e.isDeleted && (e.date || "").startsWith(selectedMonth));
+        const currentIncomes = incomesList.filter((i) => !i.isDeleted && (i.date || "").startsWith(selectedMonth));
+        const currentSavings = savingsList.filter((s) => !s.isDeleted);
+
+         // Sum completed items (completed items count toward financial totals as per UI notes)
+        const totalCompletedExpenses = currentExpenses
+            .filter((e) => e.status !== "Pending")
+            .reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
+
+        const totalCompletedIncome = currentIncomes
+            .filter((i) => i.status !== "Pending")
+            .reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
