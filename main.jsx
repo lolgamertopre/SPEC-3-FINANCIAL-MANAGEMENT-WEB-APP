@@ -189,3 +189,19 @@ useEffect(() => {
             .reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
         
         const totalSavings = currentSavings.reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
+
+         // SRS 2.2.9: Remaining Balance = Total Income - Total Expenses
+        const netBalance = totalCompletedIncome - totalCompletedExpenses;
+
+        // Total Planned Budget
+        const totalPlannedBudget = budgetsList.reduce((sum, b) => sum + (Number(b.budget_amount) || 0), 0);
+        const remainingBudget = Math.max(0, totalPlannedBudget - totalCompletedExpenses);
+        const budgetPercentRemaining = totalPlannedBudget > 0 ? Math.round((remainingBudget / totalPlannedBudget) * 100) : 100;
+
+        // Days Remaining in Month
+        const now = new Date();
+        const year = parseInt(selectedMonth.slice(0, 4), 10) || now.getFullYear();
+        const month = parseInt(selectedMonth.slice(5, 7), 10) || now.getMonth() + 1;
+        const totalDaysInMonth = new Date(year, month, 0).getDate();
+        const currentDay = year === now.getFullYear() && month === now.getMonth() + 1 ? now.getDate() : totalDaysInMonth;
+        const daysRemaining = Math.max(0, totalDaysInMonth - currentDay);
