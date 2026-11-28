@@ -187,3 +187,5 @@ useEffect(() => {
         const totalCompletedIncome = currentIncomes
             .filter((i) => i.status !== "Pending")
             .reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
+        
+        const totalSavings = currentSavings.reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
